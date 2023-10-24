@@ -13,7 +13,7 @@ public class HelloTraceV2 {
     private static final String COMPLETE_PREFIX = "<--";
     private static final String EX_PREFIX = "<X-";
 
-    public TraceStatus begin(String message){
+    public TraceStatus begin(String message) {
         TraceId traceId = new TraceId();
         Long startTimeMs = System.currentTimeMillis();
         log.info("[{}] {}{}", traceId.getId(), addSpace(START_PREFIX, traceId.getLevel()), message);
@@ -21,18 +21,18 @@ public class HelloTraceV2 {
     }
 
     //V2 추가
-    public TraceStatus beginSync(TraceId beforeTraceId, String message){
+    public TraceStatus beginSync(TraceId beforeTraceId, String message) {
         TraceId nextId = beforeTraceId.createNextId();
         Long startTimeMs = System.currentTimeMillis();
         log.info("[{}] {}{}", nextId.getId(), addSpace(START_PREFIX, nextId.getLevel()), message);
         return new TraceStatus(nextId, startTimeMs, message);
     }
 
-    public void end(TraceStatus status){
+    public void end(TraceStatus status) {
         complete(status, null);
     }
 
-    public void exception(TraceStatus status, Exception e){
+    public void exception(TraceStatus status, Exception e) {
         complete(status, e);
     }
 
@@ -55,10 +55,11 @@ public class HelloTraceV2 {
                 e.toString());
         }
     }
+
     private static String addSpace(String prefix, int level) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < level; i++) {
-            sb.append( (i == level - 1) ? "|" + prefix : "| ");
+            sb.append((i == level - 1) ? "|" + prefix : "| ");
         }
         return sb.toString();
     }

@@ -13,8 +13,9 @@ public class OrderControllerV1 {
 
     private final OrderServiceV1 orderService;
     private final HelloTraceV1 trace;
+
     @GetMapping("/v1/request")
-    public String request(String itemId){
+    public String request(String itemId) {
 
         TraceStatus status = null;
         try {
@@ -22,7 +23,7 @@ public class OrderControllerV1 {
             orderService.orderItem(itemId);
             trace.end(status);
             return "ok";
-        }catch (Exception e){
+        } catch (Exception e) {
             trace.exception(status, e);
             throw e;
         }

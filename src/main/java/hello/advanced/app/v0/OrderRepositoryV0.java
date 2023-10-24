@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class OrderRepositoryV0 {
 
-    public void save(String itemId){
+    public void save(String itemId) {
 
         //저장 로직
-        if(itemId.equals("ex")){
+        if (itemId.equals("ex")) {
             throw new IllegalArgumentException("예외 발생!");
         }
         sleep(1000);
@@ -19,7 +19,7 @@ public class OrderRepositoryV0 {
     private void sleep(int millis) {
         try {
             Thread.sleep(millis);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
